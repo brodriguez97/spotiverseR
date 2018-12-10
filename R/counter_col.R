@@ -20,6 +20,7 @@
 #'
 #'@export
 #'@examples
+#'data(christmas_playlists)
 #'df <- counter_col(christmas_playlists)
 #'View(df)
 counter_col <- function(df) {

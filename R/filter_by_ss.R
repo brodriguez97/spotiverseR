@@ -1,9 +1,9 @@
-#'@title filter_by_ss
+#'@title Filter Data by a Substring
 #'
 #'
 #'@description
 #'\code{filter_by_ss} locates the desired substring in the column playlist_name from the Christmas playlist
-#'dataframe. 
+#'dataframe.
 #'
 #'@details
 #'This function takes in a character string and subsets all the playlist names in the playlist_name
@@ -23,6 +23,8 @@
 #'
 #'@export
 #'@examples
+#'data(christmas_playlists)
+#'data<-christmas_playlists
 #'filter_by_ss(col=playlist_name, substring="jazz")
 
 filter_by_ss <- function(col = playlist_name, substring) {

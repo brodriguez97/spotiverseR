@@ -27,6 +27,7 @@
 #'
 #'@export
 #'@examples
+#'data(christmas_playlists)
 #'create_lr(
 #'data = christmas_playlists,
 #'param = tempo,

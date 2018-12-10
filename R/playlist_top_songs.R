@@ -1,4 +1,4 @@
-#'@title playlist_top_songs
+#'@title Get Top Songs From a User Playlist
 #'
 #'
 #'@description
@@ -21,7 +21,7 @@
 #'
 #'@import dplyr
 #'@import knitr
-#'@import formattable
+#'@import rlang
 #'@import kableExtra
 #'
 #'@author Belen Rodriguez <brodriguez@@wesleyan.edu>
@@ -29,14 +29,16 @@
 #'
 #'@export
 #'@examples
+#'data(christmas_playlists)
+#'data<-christmas_playlists
 #'playlist_top_songs("Christmas Jazz", valence, asc = T, top = 10, bg = "lightgreen", text = "red")
 
 # get top songs for a given variable and playlist
 playlist_top_songs <- function(playlist, param, top = 5, asc = T, kable = T, bg = "azure", text = "palevioletred") {
   require(dplyr)
   require(knitr)
-  require(formattable)
   require(kableExtra)
+  require(rlang)
   param <- enquo(param)
   df <- filter(data, playlist_name == playlist)
   if (asc) {
@@ -47,8 +49,8 @@ playlist_top_songs <- function(playlist, param, top = 5, asc = T, kable = T, bg 
   df <- select(df, track_name, !!param) %>%
     head(top)
   if (kable){
-    df <- df %>% kable() %>% 
-      kable_styling(full_width = F, position = "left") %>% 
+    df <- df %>% kable() %>%
+      kable_styling(full_width = F, position = "left") %>%
       row_spec(row = 1:nrow(df), background = bg, color = text)
     return(df)
   } else {

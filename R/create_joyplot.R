@@ -7,7 +7,7 @@
 #'
 #'
 #'@details
-#'This function uses \code{ggplot2} and \code{ggridges}.
+#'This function uses \code{ggplot2},\code{rlang}, and \code{ggridges}.
 #'
 #'
 #'@param data a dataframe of a user's playlists.
@@ -16,6 +16,7 @@
 #'
 #'@import ggplot2
 #'@import ggridges
+#'@import rlang
 #'@return a joyplot containing playlists and the distributions of a numeric variable.
 #'
 #'@author Belen Rodriguez <brodriguez@@wesleyan.edu>
@@ -23,11 +24,13 @@
 #'
 #'@export
 #'@examples
+#'data(christmas_playlists)
 #'create_joyplot(christmas_playlists, valence, c("red","green"))
 #'
 create_joyplot <- function(data = data, param, color = c("blue", "green")) {
   require(ggplot2)
   require(ggridges)
+  require(rlang)
   param <- enquo(param)
   ggplot(
     data,

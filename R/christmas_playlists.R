@@ -37,9 +37,8 @@
 #'    \item{duration_ms}{duration_ms}
 #'    \item{time_signature}{time_signature}
 #'    \item{key_mode}{key_mode}
-#'    
+#'
 #'}
-
 #'
 #'@source The data was sourced from the Spotify app.
 #'

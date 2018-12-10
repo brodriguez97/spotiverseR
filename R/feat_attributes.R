@@ -1,4 +1,4 @@
-#'@title feat_attributes
+#'@title Get Feature Attributes
 #'
 #'
 #'@description
@@ -20,5 +20,6 @@
 #'feat_attributes()
 
 feat_attributes <- function() {
+  data(definitions)
   return(definitions)
 }

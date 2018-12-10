@@ -5,7 +5,7 @@
 #'\code{create_mean_hist} takes a dataframe, one argument, a color, and a border color.
 #'
 #'@details
-#'This function uses \code{ggplot2} and \code{dplye}.
+#'This function uses \code{ggplot2},\code{rlang}, and \code{dplye}.
 #'
 #'
 #'@param data a dataframe of a user's playlists.
@@ -15,6 +15,7 @@
 #'
 #'@import ggplot2
 #'@import dplyr
+#'@import rlang
 #'@return a histogram containing mean variable values
 #'
 #'@author Belen Rodriguez <brodriguez@@wesleyan.edu>
@@ -22,17 +23,19 @@
 #'
 #'@export
 #'@examples
-#'create_mean_hist(d, energy, color = "red", border = "darkgreen")
+#'data(christmas_playlists)
+#'create_mean_hist(christmas_playlists, energy, color = "red", border = "darkgreen")
 
 
 create_mean_hist <- function(data = data, param, color = "pink", border = "darkred") {
   require(ggplot2)
   require(dplyr)
+  require(rlang)
   param <- enquo(param)
   plotdata <- data %>%
     group_by(playlist_name) %>%
     summarize(mean_param = mean(!!param))
-  
+
   # plot mean
   ggplot(
     plotdata,

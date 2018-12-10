@@ -13,8 +13,8 @@
 #'@param data a dataframe of a user's playlists.
 #'@param param a numeric variable in data
 #'@param param another numeric variable in data
-#'@param line a string with a color name 
-#'@param points a string with a color name 
+#'@param line a string with a color name
+#'@param points a string with a color name
 #'@param theme a string that has valid values "light" or "dark"
 #'
 #'@import rlang
@@ -25,6 +25,7 @@
 #'@author Kim Pham <spham@@wesleyan.edu>
 #'
 #'@examples
+#'data(christmas_playlists)
 #'create_lr_one(
 #'data = christmas_playlists,
 #'param = tempo,

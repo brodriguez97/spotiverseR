@@ -7,7 +7,7 @@
 #'
 #'
 #'@details
-#'This function uses \code{knitr} and \code{dplyr}.
+#'This function uses \code{knitr},\code{dplyr},\code{kableExtra}, and \code{rlang}.
 #'
 #'
 #'@param data a dataframe of a user's playlists.
@@ -19,6 +19,8 @@
 #'
 #'@import knitr
 #'@import dplyr
+#'@import kableExtra
+#'@import rlang
 #'@return a dataframe or table containing mean variable values
 #'
 #'@author Belen Rodriguez <brodriguez@@wesleyan.edu>
@@ -26,12 +28,14 @@
 #'
 #'@export
 #'@examples
+#'data(christmas_playlists)
 #'create_mean_df(christmas_playlists, valence, asc = F, kable=T, bg = "lightgreen", text = "red")
 
 create_mean_df <- function(data = data, param, asc = T, kable = F, bg ="green", text = "red") {
   require(knitr)
   require(dplyr)
   require(kableExtra)
+  require(rlang)
   param <- enquo(param)
   dataset <- group_by(data, playlist_name)
   df <- aggregate(dataset[, quo_name(param)], list(dataset$playlist_name), mean)

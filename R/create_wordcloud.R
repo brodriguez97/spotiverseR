@@ -1,4 +1,4 @@
-#'@title create_wordcloud
+#'@title Create a Wordcloud
 #'
 #'
 #'@description
@@ -31,6 +31,8 @@
 #'
 #'@export
 #'@examples
+#'data(christmas_playlists)
+#'data<-christmas_playlists
 #'create_wordcloud("Christmas Jazz", c("yeah", "like"), del_file = T)
 
 create_wordcloud <- function(playlist, stop_vector = F, del_file = T) {
@@ -49,7 +51,7 @@ create_wordcloud <- function(playlist, stop_vector = F, del_file = T) {
     row <- playlist[i, ]
     song <- row$track_name
     artist <- row$artist_name
-    
+
     tryCatch(
       geniusr_song <- genius_lyrics(artist = artist, song = song)
       ,
@@ -64,12 +66,12 @@ create_wordcloud <- function(playlist, stop_vector = F, del_file = T) {
       }
     )
     if (geniusr_song == "err") next
-    
+
     write(geniusr_song$lyric, file = file_name, append = TRUE)
   }
   script <- "http://www.sthda.com/upload/rquery_wordcloud.r"
   source(script)
-  
+
   if (class(stop_vector) == "character") {
     stop <- stop_vector
     txt <- readLines(file_name)
@@ -79,12 +81,12 @@ create_wordcloud <- function(playlist, stop_vector = F, del_file = T) {
     corpus <- content(corpus)
     writeLines(corpus, con = file_name)
   }
-  
+
   res <- rquery.wordcloud(file_name,
                           type = "file",
                           lang = "english"
   )
-  
+
   if (del_file) {
     file.remove(file_name)
   }

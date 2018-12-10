@@ -1,4 +1,4 @@
-#'@title feat_names
+#'@title Get Feature (Variable) Names
 #'
 #'
 #'@description
