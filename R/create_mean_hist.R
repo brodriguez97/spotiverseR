@@ -44,11 +44,11 @@ create_mean_hist <- function(data = data, param, color = "pink", border = "darkr
       y = mean_param
     )
   ) +
-    geom_bar(
-      stat = "identity",
-      fill = color,
-      color = border
-    ) +
+  geom_bar(
+    stat = "identity",
+    fill = color,
+    color = border)
++
     xlab("playlist name") +
     ylab(param) +
     theme_minimal() +

@@ -13,12 +13,12 @@
 #'The variables are as follows:
 #'\describe{
 #'    \item{KEY}{name of parameter}
-#'    \item{VALUE TYPE}{type int or float}
+#'    \item{VALUE TYPE}{type int or float}3
 #'    \item{VALUE DESCRIPTION}{description of parameter from Spotify API}
 #'
 #'}
 #'
-#'@source The data was sourced from \href{(https://developer.spotify.com/documentation/web-api/reference/object-model/}.
+#'@source The data was sourced from \href{(https://developer.spotify.com/documentation/web-api/reference/object-model/}{here}.
 #'
 #'
 #'@examples

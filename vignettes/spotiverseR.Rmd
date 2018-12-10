@@ -116,12 +116,23 @@ This function contains the descriptions of all parameters as they are written in
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 define_feat <- function(feat) {
-  require(dplyr)
-  require(rlang)
-  feat <- enquo(feat)
-  dfx <- feat_attributes()
-  dfx <- filter(dfx, KEY == quo_name(feat))
-  return(dfx$`VALUE DESCRIPTION`)
+  if (is.numeric(feat)) {
+    stop("integer is an invalid input")
+  }
+  else {
+    require(dplyr)
+    require(rlang)
+    feat <- enquo(feat)
+    dfx <- feat_attributes()
+    if (quo_name(feat) %in% dfx$KEY == F){
+     stop("invalid variable"){
+       
+     }else{
+    dfx <- filter(dfx, KEY == quo_name(feat))
+    return(dfx$`VALUE DESCRIPTION`)
+     }
+    }
+  }
 }
 ```
 
@@ -382,6 +393,7 @@ create_wordcloud <- function(data = data, playlist, stop_vector = F, del_file = 
         geniusr_song <- "err"
       }
     )
+
     if (geniusr_song == "err") next
 
     write(geniusr_song$lyric, file = file_name, append = TRUE)
@@ -400,8 +412,8 @@ create_wordcloud <- function(data = data, playlist, stop_vector = F, del_file = 
   }
 
   res <- rquery.wordcloud(file_name,
-    type = "file",
-    lang = "english"
+                          type = "file",
+                          lang = "english"
   )
 
   if (del_file) {
@@ -412,7 +424,7 @@ create_wordcloud <- function(data = data, playlist, stop_vector = F, del_file = 
 ```
 
 ```{r eval=TRUE, echo=TRUE}
-# create_wordcloud(data = christmas_playlists, "Christmas Hits", c("yeah", "like"), del_file = T)
+#create_wordcloud(data = christmas_playlists, "Christmas Classics", c("yeah", "like"), del_file = T)
 ```
 
 

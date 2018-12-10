@@ -29,7 +29,7 @@
 #'@export
 #'@examples
 #'data(christmas_playlists)
-#'create_mean_df(christmas_playlists, valence, asc = F, kable=T, bg = "lightgreen", text = "red")
+#'create_mean_df(christmas_playlists, valence, asc = F, kable=F)
 
 create_mean_df <- function(data = data, param, asc = T, kable = F, bg ="green", text = "red") {
   require(knitr)

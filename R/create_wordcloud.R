@@ -65,6 +65,7 @@ create_wordcloud <- function(data = data, playlist, stop_vector = F, del_file = 
         geniusr_song <- "err"
       }
     )
+
     if (geniusr_song == "err") next
 
     write(geniusr_song$lyric, file = file_name, append = TRUE)

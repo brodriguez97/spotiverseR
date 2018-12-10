@@ -151,32 +151,11 @@ a background color, and a text color.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='no'>christmas_playlists</span>)
-<span class='fu'>create_mean_df</span>(<span class='no'>christmas_playlists</span>, <span class='no'>valence</span>, <span class='kw'>asc</span> <span class='kw'>=</span> <span class='no'>F</span>, <span class='kw'>kable</span><span class='kw'>=</span><span class='no'>T</span>, <span class='kw'>bg</span> <span class='kw'>=</span> <span class='st'>"lightgreen"</span>, <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"red"</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: knitr</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: kableExtra</span></div><div class='output co'>#&gt; &lt;table class="table" style="width: auto !important; "&gt;
-#&gt;  &lt;thead&gt;
-#&gt;   &lt;tr&gt;
-#&gt;    &lt;th style="text-align:left;"&gt; playlist &lt;/th&gt;
-#&gt;    &lt;th style="text-align:right;"&gt; mean (valence) &lt;/th&gt;
-#&gt;   &lt;/tr&gt;
-#&gt;  &lt;/thead&gt;
-#&gt; &lt;tbody&gt;
-#&gt;   &lt;tr&gt;
-#&gt;    &lt;td style="text-align:left;color: red;background-color: lightgreen;"&gt; Christmas Hits &lt;/td&gt;
-#&gt;    &lt;td style="text-align:right;color: red;background-color: lightgreen;"&gt; 0.5731333 &lt;/td&gt;
-#&gt;   &lt;/tr&gt;
-#&gt;   &lt;tr&gt;
-#&gt;    &lt;td style="text-align:left;color: red;background-color: lightgreen;"&gt; Christmas Classics &lt;/td&gt;
-#&gt;    &lt;td style="text-align:right;color: red;background-color: lightgreen;"&gt; 0.5277071 &lt;/td&gt;
-#&gt;   &lt;/tr&gt;
-#&gt;   &lt;tr&gt;
-#&gt;    &lt;td style="text-align:left;color: red;background-color: lightgreen;"&gt; Christmas Jazz &lt;/td&gt;
-#&gt;    &lt;td style="text-align:right;color: red;background-color: lightgreen;"&gt; 0.4606675 &lt;/td&gt;
-#&gt;   &lt;/tr&gt;
-#&gt;   &lt;tr&gt;
-#&gt;    &lt;td style="text-align:left;color: red;background-color: lightgreen;"&gt; Spotify Singles: Christmas Collection &lt;/td&gt;
-#&gt;    &lt;td style="text-align:right;color: red;background-color: lightgreen;"&gt; 0.3410750 &lt;/td&gt;
-#&gt;   &lt;/tr&gt;
-#&gt; &lt;/tbody&gt;
-#&gt; &lt;/table&gt;</div></pre>
+<span class='fu'>create_mean_df</span>(<span class='no'>christmas_playlists</span>, <span class='no'>valence</span>, <span class='kw'>asc</span> <span class='kw'>=</span> <span class='no'>F</span>, <span class='kw'>kable</span><span class='kw'>=</span><span class='no'>F</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: knitr</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: kableExtra</span></div><div class='output co'>#&gt;                                playlist mean (valence)
+#&gt; 1                        Christmas Hits      0.5731333
+#&gt; 2                    Christmas Classics      0.5277071
+#&gt; 3                        Christmas Jazz      0.4606675
+#&gt; 4 Spotify Singles: Christmas Collection      0.3410750</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -201,7 +180,7 @@ Kim Pham &lt;spham@wesleyan.edu&gt;
 
       <footer>
       <div class="copyright">
-  <p>Developed by Kim Pham.</p>
+  <p>Developed by Kim Pham, Belen Rodriguez.</p>
 </div>
 
 <div class="pkgdown">
