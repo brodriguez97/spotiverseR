@@ -19,12 +19,12 @@ knitr::opts_chunk$set(
 ## Overview
 
 
-This package, spotiverseR, aims to extend existing spotifyR functions with helper functions and data visualizations. We've integrated multiple existing packages into spotiverse functions (dplyr, ggplot2, wordcloud, geniusR, etc.) in order to analyze playlists and playlist tracks and provide compelling playlist visualization. 
+This package, `spotiverseR`, aims to extend the `spotifyr` package with helper functions and data visualizations for playlists. `spotiverseR` integrates multiple packages into `spotiverseR` functions such as `dplyr`, `ggplot2`,   `wordcloud`, `geniusR`, etc., in order to let users analyze playlists and create compelling playlist visualization. 
 
 ## Setting up
 ###Installation
 
-```{r eval = TRUE, echo = TRUE, warning=FALSE}
+```{r eval = TRUE, message = FALSE, warning=FALSE}
 devtools::install_github('charlie86/spotifyr')
 library('spotifyr')
 ```
@@ -33,35 +33,44 @@ library('spotifyr')
 
 ### Authentication
 
-The following authetication excerpt comes from the spotifyr package:
+The following authetication excerpt comes from the `spotifyr` package ([here](https://github.com/charlie86/spotifyr)):
 
 First, set up a Dev account with Spotify to access their Web API ([here](https://developer.spotify.com/dashboard/)). This will give you your Client ID and Client Secret. Once you have those, you can pull your access token into R with get_spotify_access_token().
 
-The easiest way to authenticate is to set your credentials to the System Environment variables SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET. The default arguments to get_spotify_access_token() (and all other functions in this package) will refer to those. Alternatively, you can set them manually and make sure to explicitly refer to your access token in each subsequent function call.
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+Sys.setenv(SPOTIFY_CLIENT_ID = "5edbea8880314a4fa53863228faea20b")
+Sys.setenv(SPOTIFY_CLIENT_SECRET = "09bab3ff0dcc4163a4d5af6c1f1e8566")
+access_token <- get_spotify_access_token()
+```
 
-
-
+```{r eval = FALSE}
 Sys.setenv(SPOTIFY_CLIENT_ID = 'xxxxxxxxxxxxxxxxxxxxx')
 Sys.setenv(SPOTIFY_CLIENT_SECRET = 'xxxxxxxxxxxxxxxxxxxxx')
 access_token <- get_spotify_access_token()
+```
 
 
 ### Get URI
 
-Your Spotify URI can be found on the Spotify app. On the top right corner, go to Profile. Under your name, click on the circle with threes and click on "Copy Spotify URI". It is recommended to save the URI in an R variable called 'uri' as demonstrated below.
+Your Spotify URI can be found on the Spotify app. On the top right corner, go to profile. Under your name, click on the circlular button and hit "Copy Spotify URI" in the drop down list. It is recommended to save the URI in an R variable called 'uri' as demonstrated below.
 
-```{r}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 uri <- 1272777153
-data<- get_user_audio_features(uri)
+data <- get_user_audio_features(uri)
 ```
 
-### Get User Audio Features
+```{r eval = FALSE}
+uri <- 1234567
+```
 
-In order to retrieve the comprehensive data with your Spotify public playlists, we recommend doing the following function call and saving it as an R variable called 'data'.
 
+### Import Your Spotify Playlists
 
+In order to retrieve the comprehensive dataset of your Spotify public playlists, we recommend making the following function call and saving it as an R variable called 'data'.
+
+```{r eval = FALSE}
 data <- get_user_audio_features(uri)
-
+```
 
 
 ## Dataframe Descriptions
@@ -76,7 +85,7 @@ The `christmas_playlists` is an example dataframe for testing. It has the same f
 
 This function does not take in any arguments, it just returns a character vector with the names of all parameters when you type in feat_names().
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r echo=FALSE, warning=FALSE}
 feat_names <- function() {
   dfx <- feat_attributes()
   return(dfx$KEY)

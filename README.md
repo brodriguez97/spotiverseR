@@ -1,7 +1,7 @@
 # Introduction to spotiverseR
 
 This package analyzes users' playlists with data from the Spotify API.
-## more stuff
+
 To download this package use the following code.
 ```
 # install spotiverseR package
