@@ -12,3 +12,4 @@ Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr
 RoxygenNote: 6.1.0
+BugReports: https://github.com/kimpham23/spotiverseR/issues

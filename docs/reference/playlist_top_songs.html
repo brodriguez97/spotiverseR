@@ -108,12 +108,16 @@ parameter.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>playlist_top_songs</span>(<span class='no'>playlist</span>, <span class='no'>param</span>, <span class='kw'>top</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>asc</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='kw'>kable</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='kw'>bg</span> <span class='kw'>=</span> <span class='st'>"azure"</span>, <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"palevioletred"</span>)</pre>
+    <pre class="usage"><span class='fu'>playlist_top_songs</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>data</span>, <span class='no'>playlist</span>, <span class='no'>param</span>, <span class='kw'>top</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>asc</span> <span class='kw'>=</span> <span class='no'>T</span>,
+  <span class='kw'>kable</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='kw'>bg</span> <span class='kw'>=</span> <span class='st'>"azure"</span>, <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"palevioletred"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>data</th>
+      <td><p>a dataframe of a user's playlists</p></td>
+    </tr>
     <tr>
       <th>playlist</th>
       <td><p>a character string</p></td>
@@ -156,8 +160,19 @@ with the top 5 songs</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='no'>christmas_playlists</span>)
-<span class='no'>data</span><span class='kw'>&lt;-</span><span class='no'>christmas_playlists</span>
-<span class='fu'>playlist_top_songs</span>(<span class='st'>"Christmas Jazz"</span>, <span class='no'>valence</span>, <span class='kw'>asc</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='kw'>top</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>bg</span> <span class='kw'>=</span> <span class='st'>"lightgreen"</span>, <span class='kw'>text</span> <span class='kw'>=</span> <span class='st'>"red"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in UseMethod("filter_"): no applicable method for 'filter_' applied to an object of class "function"</span></div></pre>
+<span class='fu'>playlist_top_songs</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>christmas_playlists</span>, <span class='st'>"Christmas Jazz"</span>, <span class='no'>valence</span>, <span class='kw'>asc</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='kw'>kable</span> <span class='kw'>=</span> <span class='no'>F</span>, <span class='kw'>top</span> <span class='kw'>=</span> <span class='fl'>10</span>)</div><div class='output co'>#&gt; # A tibble: 10 x 2
+#&gt;    track_name                                                            valence
+#&gt;    &lt;chr&gt;                                                                   &lt;dbl&gt;
+#&gt;  1 Jingle Bells                                                            0.892
+#&gt;  2 We Wish You The Merriest                                                0.869
+#&gt;  3 Frosty The Snowman                                                      0.841
+#&gt;  4 Sleigh Ride                                                             0.829
+#&gt;  5 Here Comes Santa Claus (Right Down Santa Claus Lane) - Single Version   0.749
+#&gt;  6 Baby, It's Cold Outside (feat. Meghan Trainor)                          0.684
+#&gt;  7 Man With The Bag                                                        0.684
+#&gt;  8 What A Wonderful Time Of Year                                           0.635
+#&gt;  9 Little Jack Frost Get Lost                                              0.631
+#&gt; 10 Jingle Bell Rock (with The Patrick Williams Orchestra)                  0.626</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

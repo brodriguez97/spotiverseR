@@ -32,16 +32,18 @@
 #'param2 = valence,
 #'points = "darkgreen",
 #'line = "red",
-#'theme = "light",
+#'theme = "light"
 #')
 create_lr_one <- function(data, param, param2, line = "white",
                           points = "green", theme = "dark") {
+  require(rlang)
+  require(ggplot2)
   if (theme == "dark") {
     t <- theme_dark()
   } else {
     t <- theme_light()
   }
-  g <- ggplot(
+  ggplot(
     data = data,
     mapping = aes(
       x = !!param,
@@ -59,5 +61,4 @@ create_lr_one <- function(data, param, param2, line = "white",
       color = line
     ) +
     t
-  return(g)
 }

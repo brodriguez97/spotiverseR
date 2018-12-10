@@ -83,51 +83,30 @@
 <div id="installation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">'charlie86/spotifyr'</span>)
-<span class="kw">library</span>(<span class="st">'spotifyr'</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"charlie86/spotifyr"</span>)
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"kimpham23/spotiverseR"</span>)
+<span class="kw">library</span>(<span class="st">"spotifyr"</span>)
+<span class="kw">library</span>(<span class="st">"spotiverseR"</span>)</code></pre></div>
 </div>
 <div id="authentication" class="section level3">
 <h3 class="hasAnchor">
 <a href="#authentication" class="anchor"></a>Authentication</h3>
 <p>The following authetication excerpt comes from the <code>spotifyr</code> package (<a href="https://github.com/charlie86/spotifyr">here</a>):</p>
 <p>First, set up a Dev account with Spotify to access their Web API (<a href="https://developer.spotify.com/dashboard/">here</a>). This will give you your Client ID and Client Secret. Once you have those, you can pull your access token into R with get_spotify_access_token().</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.setenv</span>(<span class="dt">SPOTIFY_CLIENT_ID =</span> <span class="st">'xxxxxxxxxxxxxxxxxxxxx'</span>)
-<span class="kw">Sys.setenv</span>(<span class="dt">SPOTIFY_CLIENT_SECRET =</span> <span class="st">'xxxxxxxxxxxxxxxxxxxxx'</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.setenv</span>(<span class="dt">SPOTIFY_CLIENT_ID =</span> <span class="st">"xxxxxxxxxxxxxxxxxxxxx"</span>)
+<span class="kw">Sys.setenv</span>(<span class="dt">SPOTIFY_CLIENT_SECRET =</span> <span class="st">"xxxxxxxxxxxxxxxxxxxxx"</span>)
 access_token &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/spotifyr/topics/get_spotify_access_token">get_spotify_access_token</a></span>()</code></pre></div>
 </div>
 <div id="get-uri" class="section level3">
 <h3 class="hasAnchor">
 <a href="#get-uri" class="anchor"></a>Get URI</h3>
 <p>Your Spotify URI can be found on the Spotify app. On the top right corner, go to profile. Under your name, click on the circlular button and hit “Copy Spotify URI” in the drop down list. It is recommended to save the URI in an R variable called ‘uri’ as demonstrated below.</p>
-<pre><code>#&gt; [1] 1
-#&gt; [1] 1
-#&gt; [1] 2
-#&gt; [1] 1
-#&gt; [1] 3
-#&gt; [1] 1
-#&gt; [1] 4
-#&gt; [1] 1
-#&gt; [1] 5
-#&gt; [1] 1
-#&gt; [1] 6
-#&gt; [1] 1
-#&gt; [1] 7
-#&gt; [1] 1
-#&gt; [1] 8
-#&gt; [1] 1
-#&gt; [1] 9
-#&gt; [1] 1
-#&gt; [1] 2
-#&gt; [1] 10
-#&gt; [1] 1
-#&gt; [1] 11
-#&gt; [1] 1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uri &lt;-<span class="st"> </span><span class="dv">1234567</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">uri &lt;-<span class="st"> </span><span class="dv">123456789</span></code></pre></div>
 </div>
 <div id="import-your-spotify-playlists" class="section level3">
 <h3 class="hasAnchor">
 <a href="#import-your-spotify-playlists" class="anchor"></a>Import Your Spotify Playlists</h3>
-<p>In order to retrieve the comprehensive dataset of your Spotify public playlists, we recommend making the following function call and saving it as an R variable called ‘data’.</p>
+<p>In order to retrieve the comprehensive dataset of your Spotify public playlists, we recommend making the following function call and saving it as an R variable called ‘data’ if you want to call functions on all of your playlists.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">data &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/spotifyr/topics/get_user_audio_features">get_user_audio_features</a></span>(uri)</code></pre></div>
 </div>
 </div>
@@ -143,27 +122,53 @@ access_token &lt;-<span class="st"> </span><span class="kw"><a href="http://www.
 <div id="all-spotify-features" class="section level3">
 <h3 class="hasAnchor">
 <a href="#all-spotify-features" class="anchor"></a>All Spotify features</h3>
-<p>This function does not take in any arguments, it just returns a character vector with the names of all parameters when you type in feat_names().</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#feat_names()</span></code></pre></div>
+<p>This function does not take in any arguments, it just returns a character vector with the names of all parameters when you type in <code><a href="../reference/feat_names.html">feat_names()</a></code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/feat_names.html">feat_names</a></span>()
+<span class="co">#&gt;  [1] "duration_ms"      "key"              "mode"            </span>
+<span class="co">#&gt;  [4] "time_signature"   "acousticness"     "danceability"    </span>
+<span class="co">#&gt;  [7] "energy"           "instrumentalness" "liveness"        </span>
+<span class="co">#&gt; [10] "loudness"         "speechiness"      "valence"         </span>
+<span class="co">#&gt; [13] "tempo"</span></code></pre></div>
 </div>
 <div id="definitions-of-all-spotify-features" class="section level3">
 <h3 class="hasAnchor">
 <a href="#definitions-of-all-spotify-features" class="anchor"></a>Definitions of all Spotify features</h3>
-<p>This function does not take in any arguments. It is called on its own and returns a description in the console with the contents of the definitions.Rda file.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#feat_attributes()</span></code></pre></div>
+<p>This function does not take in any arguments. It is called on its own and returns a description in the console with the contents of the <code>definitions.rda</code> file.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/feat_attributes.html">feat_attributes</a></span>()
+<span class="co">#&gt;                 KEY VALUE TYPE</span>
+<span class="co">#&gt; 1       duration_ms        int</span>
+<span class="co">#&gt; 2               key        int</span>
+<span class="co">#&gt; 3              mode        int</span>
+<span class="co">#&gt; 4    time_signature        int</span>
+<span class="co">#&gt; 5      acousticness      float</span>
+<span class="co">#&gt; 6      danceability      float</span>
+<span class="co">#&gt; 7            energy      float</span>
+<span class="co">#&gt; 8  instrumentalness      float</span>
+<span class="co">#&gt; 9          liveness      float</span>
+<span class="co">#&gt; 10         loudness      float</span>
+<span class="co">#&gt; 11      speechiness      float</span>
+<span class="co">#&gt; 12          valence      float</span>
+<span class="co">#&gt; 13            tempo      float</span>
+<span class="co">#&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     VALUE DESCRIPTION</span>
+<span class="co">#&gt; 1                                                                                                                                                                                                                                                                                                                                                                                                                                                                          The duration of the track in milliseconds.</span>
+<span class="co">#&gt; 2                                                                                                                                                                                                                                                                                                                             The estimated overall key of the track. Integers map to pitches using standard Pitch Class notation . E.g. 0 = C, 1 = C♯/D♭, 2 = D, and so on. If no key was detected, the value is -1.</span>
+<span class="co">#&gt; 3                                                                                                                                                                                                                                                                                                                                                     Mode indicates the modality (major or minor) of a track, the type of scale from which its melodic content is derived. Major is represented by 1 and minor is 0.</span>
+<span class="co">#&gt; 4                                                                                                                                                                                                                                                                                                                                                       An estimated overall time signature of a track. The time signature (meter) is a notational convention to specify how many beats are in each bar (or measure).</span>
+<span class="co">#&gt; 5                                                                                                                                                                                                                                                                                                                                                                                        A confidence measure from 0.0 to 1.0 of whether the track is acoustic. 1.0 represents high confidence the track is acoustic.</span>
+<span class="co">#&gt; 6                                                                                                                                                                                                                                                                        Danceability describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A value of 0.0 is least danceable and 1.0 is most danceable.</span>
+<span class="co">#&gt; 7                                                                                                                           Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale. Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy.</span>
+<span class="co">#&gt; 8                                                      Predicts whether a track contains no vocals. “Ooh” and “aah” sounds are treated as instrumental in this context. Rap or spoken word tracks are clearly “vocal”. The closer the instrumentalness value is to 1.0, the greater likelihood the track contains no vocal content. Values above 0.5 are intended to represent instrumental tracks, but confidence is higher as the value approaches 1.0. The distribution of values for this feature look like this:</span>
+<span class="co">#&gt; 9                                                                                                                                                                                                                                                                                             Detects the presence of an audience in the recording. Higher liveness values represent an increased probability that the track was performed live. A value above 0.8 provides strong likelihood that the track is live.</span>
+<span class="co">#&gt; 10                                                                                                                                                                                       The overall loudness of a track in decibels (dB). Loudness values are averaged across the entire track and are useful for comparing relative loudness of tracks. Loudness is the quality of a sound that is the primary psychological correlate of physical strength (amplitude). Values typical range between -60 and 0 db.</span>
+<span class="co">#&gt; 11 Speechiness detects the presence of spoken words in a track. The more exclusively speech-like the recording (e.g. talk show, audio book, poetry), the closer to 1.0 the attribute value. Values above 0.66 describe tracks that are probably made entirely of spoken words. Values between 0.33 and 0.66 describe tracks that may contain both music and speech, either in sections or layered, including such cases as rap music. Values below 0.33 most likely represent music and other non-speech-like tracks.</span>
+<span class="co">#&gt; 12                                                                                                                                                                                                                                                                  A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry).</span>
+<span class="co">#&gt; 13                                                                                                                                                                                                                                                                                                                         The overall estimated tempo of a track in beats per minute (BPM). In musical terminology, tempo is the speed or pace of a given piece and derives directly from the average beat duration.</span></code></pre></div>
 </div>
 <div id="definitions-of-specific-spotify-features" class="section level3">
 <h3 class="hasAnchor">
 <a href="#definitions-of-specific-spotify-features" class="anchor"></a>Definitions of specific Spotify features</h3>
 <p>This function contains the descriptions of all parameters as they are written in the Spotify API within a dataframe. The user can see the description of a parameter when they input the parameter name.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#define_feat(valence)</span></code></pre></div>
-</div>
-<div id="filtering-playlist-names-with-substrings" class="section level3">
-<h3 class="hasAnchor">
-<a href="#filtering-playlist-names-with-substrings" class="anchor"></a>Filtering playlist names with substrings</h3>
-<p>This function takes in a character string and subsets all the playlist names in the playlist_name column that contains that substring.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/filter_by_ss.html">filter_by_ss</a></span>(<span class="dt">col=</span>playlist_name, <span class="dt">substring=</span><span class="st">"jazz"</span>)
-<span class="co">#&gt; Loading required package: rlang</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/define_feat.html">define_feat</a></span>(valence)
 <span class="co">#&gt; Loading required package: dplyr</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'dplyr'</span>
@@ -173,14 +178,32 @@ access_token &lt;-<span class="st"> </span><span class="kw"><a href="http://www.
 <span class="co">#&gt; The following objects are masked from 'package:base':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     intersect, setdiff, setequal, union</span>
+<span class="co">#&gt; Loading required package: rlang</span>
+<span class="co">#&gt; [1] "A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry)."</span></code></pre></div>
+</div>
+<div id="filtering-playlist-names-with-substrings" class="section level3">
+<h3 class="hasAnchor">
+<a href="#filtering-playlist-names-with-substrings" class="anchor"></a>Filtering playlist names with substrings</h3>
+<p>This function takes in a character string and subsets all the playlist names in the playlist_name column that contains that substring.Note that substrings are case sensative.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">"christmas_playlists"</span>)
+<span class="kw"><a href="../reference/filter_by_ss.html">filter_by_ss</a></span>(<span class="dt">data =</span> christmas_playlists, <span class="dt">col =</span> playlist_name, <span class="dt">substring =</span> <span class="st">"Jazz"</span>)
 <span class="co">#&gt; Loading required package: stringr</span>
-<span class="co">#&gt; # A tibble: 0 x 29</span>
-<span class="co">#&gt; # ... with 29 variables: playlist_name &lt;chr&gt;, playlist_uri &lt;chr&gt;,</span>
-<span class="co">#&gt; #   playlist_tracks_url &lt;chr&gt;, playlist_num_tracks &lt;int&gt;,</span>
-<span class="co">#&gt; #   snapshot_id &lt;chr&gt;, playlist_img &lt;chr&gt;, track_name &lt;chr&gt;,</span>
-<span class="co">#&gt; #   track_uri &lt;chr&gt;, artist_name &lt;chr&gt;, album_name &lt;chr&gt;, album_img &lt;chr&gt;,</span>
-<span class="co">#&gt; #   track_added_at &lt;dttm&gt;, track_popularity &lt;int&gt;,</span>
-<span class="co">#&gt; #   track_preview_url &lt;chr&gt;, track_open_spotify_url &lt;chr&gt;,</span>
+<span class="co">#&gt; # A tibble: 40 x 26</span>
+<span class="co">#&gt;    playlist_name playlist_uri playlist_tracks… playlist_num_tr… snapshot_id</span>
+<span class="co">#&gt;    &lt;chr&gt;         &lt;chr&gt;        &lt;chr&gt;                       &lt;int&gt; &lt;chr&gt;      </span>
+<span class="co">#&gt;  1 Christmas Ja… 37i9dQZF1DX… https://api.spo…               40 MTU0MTQ0Mz…</span>
+<span class="co">#&gt;  2 Christmas Ja… 37i9dQZF1DX… https://api.spo…               40 MTU0MTQ0Mz…</span>
+<span class="co">#&gt;  3 Christmas Ja… 37i9dQZF1DX… https://api.spo…               40 MTU0MTQ0Mz…</span>
+<span class="co">#&gt;  4 Christmas Ja… 37i9dQZF1DX… https://api.spo…               40 MTU0MTQ0Mz…</span>
+<span class="co">#&gt;  5 Christmas Ja… 37i9dQZF1DX… https://api.spo…               40 MTU0MTQ0Mz…</span>
+<span class="co">#&gt;  6 Christmas Ja… 37i9dQZF1DX… https://api.spo…               40 MTU0MTQ0Mz…</span>
+<span class="co">#&gt;  7 Christmas Ja… 37i9dQZF1DX… https://api.spo…               40 MTU0MTQ0Mz…</span>
+<span class="co">#&gt;  8 Christmas Ja… 37i9dQZF1DX… https://api.spo…               40 MTU0MTQ0Mz…</span>
+<span class="co">#&gt;  9 Christmas Ja… 37i9dQZF1DX… https://api.spo…               40 MTU0MTQ0Mz…</span>
+<span class="co">#&gt; 10 Christmas Ja… 37i9dQZF1DX… https://api.spo…               40 MTU0MTQ0Mz…</span>
+<span class="co">#&gt; # ... with 30 more rows, and 21 more variables: playlist_img &lt;chr&gt;,</span>
+<span class="co">#&gt; #   track_name &lt;chr&gt;, track_uri &lt;chr&gt;, artist_name &lt;chr&gt;,</span>
+<span class="co">#&gt; #   album_name &lt;chr&gt;, album_img &lt;chr&gt;, track_popularity &lt;int&gt;,</span>
 <span class="co">#&gt; #   danceability &lt;dbl&gt;, energy &lt;dbl&gt;, key &lt;chr&gt;, loudness &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   mode &lt;chr&gt;, speechiness &lt;dbl&gt;, acousticness &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   instrumentalness &lt;dbl&gt;, liveness &lt;dbl&gt;, valence &lt;dbl&gt;, tempo &lt;dbl&gt;,</span>
@@ -189,30 +212,30 @@ access_token &lt;-<span class="st"> </span><span class="kw"><a href="http://www.
 <div id="create-a-histogram-comparing-users-playlists-" class="section level3">
 <h3 class="hasAnchor">
 <a href="#create-a-histogram-comparing-users-playlists-" class="anchor"></a>Create a histogram comparing user’s playlists.</h3>
-<p>The function create_mean_hist(data, …) allows the user to create a histogram comparing a mean variable across different playlists. Here we see that the playlist ‘Singled Out’ has the highest average of energy out of all listed playlists, with ‘Today’s Top Hits’ coming in close second. As exepected, the playlist ‘Quiet Evening’ has the smallest average of energy.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/create_mean_hist.html">create_mean_hist</a></span>(data, energy, <span class="dt">color =</span> <span class="st">"red"</span>, <span class="dt">border =</span> <span class="st">"darkgreen"</span>)
+<p>This function allows the user to create a histogram comparing a given average variable across different playlists. Here we see that the playlist ‘Singled Out’ has the highest average of energy out of all listed playlists, with ‘Today’s Top Hits’ coming in close second. As exepected, the playlist ‘Quiet Evening’ has the smallest average of energy.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/create_mean_hist.html">create_mean_hist</a></span>(<span class="dt">data =</span> christmas_playlists, energy, <span class="dt">color =</span> <span class="st">"red"</span>, <span class="dt">border =</span> <span class="st">"darkgreen"</span>)
 <span class="co">#&gt; Loading required package: ggplot2</span></code></pre></div>
-<p><img src="spotiverseR_files/figure-html/unnamed-chunk-16-1.png" width="700"></p>
+<p><img src="spotiverseR_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
 </div>
 <div id="create-a-joyplot-comparing-users-playlists" class="section level3">
 <h3 class="hasAnchor">
 <a href="#create-a-joyplot-comparing-users-playlists" class="anchor"></a>Create a joyplot comparing user’s playlists</h3>
-<p>The function create_joyplot(data,…) allows the user to create a joyplot (or ridgeline plot) comparing the distributions of a numeric variable across different playlists.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/create_joyplot.html">create_joyplot</a></span>(data, valence, <span class="kw">c</span>(<span class="st">"red"</span>,<span class="st">"green"</span>))
+<p>This function allows the user to create a joyplot (or ridgeline plot) comparing the distributions of a numeric variable across different playlists.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/create_joyplot.html">create_joyplot</a></span>(<span class="dt">data =</span> christmas_playlists, valence, <span class="kw">c</span>(<span class="st">"red"</span>, <span class="st">"green"</span>))
 <span class="co">#&gt; Loading required package: ggridges</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'ggridges'</span>
 <span class="co">#&gt; The following object is masked from 'package:ggplot2':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     scale_discrete_manual</span>
-<span class="co">#&gt; Picking joint bandwidth of 0.0867</span></code></pre></div>
-<p><img src="spotiverseR_files/figure-html/unnamed-chunk-18-1.png" width="700"></p>
+<span class="co">#&gt; Picking joint bandwidth of 0.1</span></code></pre></div>
+<p><img src="spotiverseR_files/figure-html/unnamed-chunk-17-1.png" width="700"></p>
 </div>
 <div id="create-a-table-or-dataframe-comparing-a-users-playlists-" class="section level3">
 <h3 class="hasAnchor">
 <a href="#create-a-table-or-dataframe-comparing-a-users-playlists-" class="anchor"></a>Create a table or dataframe comparing a user’s playlists.</h3>
-<p>The function create_mean_df(data,…) allows the user to create either a dataframe or table comparing one mean variable across different playlists.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/create_mean_df.html">create_mean_df</a></span>(data, valence, <span class="dt">asc =</span> F, <span class="dt">kable=</span>T, <span class="dt">bg =</span> <span class="st">"lightgreen"</span>, <span class="dt">text =</span> <span class="st">"red"</span>)
+<p>This function allows the user to create either a dataframe or table comparing one mean variable across different playlists.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/create_mean_df.html">create_mean_df</a></span>(<span class="dt">data =</span> christmas_playlists, valence, <span class="dt">asc =</span> F, <span class="dt">kable =</span> T, <span class="dt">bg =</span> <span class="st">"lightgreen"</span>, <span class="dt">text =</span> <span class="st">"red"</span>)
 <span class="co">#&gt; Loading required package: knitr</span>
 <span class="co">#&gt; Loading required package: kableExtra</span></code></pre></div>
 <table class="table" style="width: auto !important; ">
@@ -230,7 +253,7 @@ mean (valence)
 Christmas Hits
 </td>
 <td style="text-align:right;color: red;background-color: lightgreen;">
-0.5664573
+0.5731333
 </td>
 </tr>
 <tr>
@@ -243,58 +266,10 @@ Christmas Classics
 </tr>
 <tr>
 <td style="text-align:left;color: red;background-color: lightgreen;">
-Today’s Top Hits
-</td>
-<td style="text-align:right;color: red;background-color: lightgreen;">
-0.4645280
-</td>
-</tr>
-<tr>
-<td style="text-align:left;color: red;background-color: lightgreen;">
-Singled Out
-</td>
-<td style="text-align:right;color: red;background-color: lightgreen;">
-0.4618267
-</td>
-</tr>
-<tr>
-<td style="text-align:left;color: red;background-color: lightgreen;">
 Christmas Jazz
 </td>
 <td style="text-align:right;color: red;background-color: lightgreen;">
 0.4606675
-</td>
-</tr>
-<tr>
-<td style="text-align:left;color: red;background-color: lightgreen;">
-Tastebreakers
-</td>
-<td style="text-align:right;color: red;background-color: lightgreen;">
-0.4141480
-</td>
-</tr>
-<tr>
-<td style="text-align:left;color: red;background-color: lightgreen;">
-Acoustic Hits
-</td>
-<td style="text-align:right;color: red;background-color: lightgreen;">
-0.3772738
-</td>
-</tr>
-<tr>
-<td style="text-align:left;color: red;background-color: lightgreen;">
-Your Top Songs 2018
-</td>
-<td style="text-align:right;color: red;background-color: lightgreen;">
-0.3704800
-</td>
-</tr>
-<tr>
-<td style="text-align:left;color: red;background-color: lightgreen;">
-Discover Weekly
-</td>
-<td style="text-align:right;color: red;background-color: lightgreen;">
-0.3672633
 </td>
 </tr>
 <tr>
@@ -305,23 +280,15 @@ Spotify Singles: Christmas Collection
 0.3410750
 </td>
 </tr>
-<tr>
-<td style="text-align:left;color: red;background-color: lightgreen;">
-Quiet Evening
-</td>
-<td style="text-align:right;color: red;background-color: lightgreen;">
-0.3352867
-</td>
-</tr>
 </tbody>
 </table>
 </div>
 <div id="create-a-linear-regression-model-comparing-two-variables-" class="section level3">
 <h3 class="hasAnchor">
 <a href="#create-a-linear-regression-model-comparing-two-variables-" class="anchor"></a>Create a linear regression model comparing two variables.</h3>
-<p>The function create_lr(data,…) allows the user to create a linear regression model (or models) comparing two numeric variables. If the user selects multi = T, the output will show a different linear regression model per playlist. Otherwise, all playlists are grouped together, and the output will result in a single linear regression model.</p>
+<p>This function allows the user to create a linear regression model (or models) comparing two numeric variables. If the user selects multi = T, the output will show a different linear regression model per playlist. Otherwise, all playlists are grouped together, and the output will result in a single linear regression model.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/create_lr.html">create_lr</a></span>(
-  <span class="dt">data =</span> data,
+  <span class="dt">data =</span> christmas_playlists,
   <span class="dt">param =</span> tempo,
   <span class="dt">param2 =</span> valence,
   <span class="dt">points =</span> <span class="st">"darkgreen"</span>,
@@ -329,20 +296,19 @@ Quiet Evening
   <span class="dt">theme =</span> <span class="st">"light"</span>,
   <span class="dt">multi =</span> F
 )</code></pre></div>
-<p><img src="spotiverseR_files/figure-html/unnamed-chunk-22-1.png" width="700"></p>
+<p><img src="spotiverseR_files/figure-html/unnamed-chunk-21-1.png" width="700"></p>
 </div>
 <div id="creating-wordcloud-of-playlist" class="section level3">
 <h3 class="hasAnchor">
 <a href="#creating-wordcloud-of-playlist" class="anchor"></a>Creating Wordcloud of Playlist</h3>
 <p>This function takes in a string of a playlist, a stop_vector that can remove certain common words like “yeah” and “like” (as well as any other words the user find as irrelevent), and del_file which is a boolean value that asserts whether the user wants to delete the output text file that is generated within the function and that stores all the lyrics that are accumulated for the purposes of generating the word cloud. This function would be especially useful for themed playlists.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#create_wordcloud("Discover Weekly", c("yeah", "like"), del_file = T)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create_wordcloud(data = christmas_playlists, "Christmas Hits", c("yeah", "like"), del_file = T)</span></code></pre></div>
 </div>
 <div id="top-5-songs-of-a-specified-spotify-feature-within-a-playlist" class="section level3">
 <h3 class="hasAnchor">
 <a href="#top-5-songs-of-a-specified-spotify-feature-within-a-playlist" class="anchor"></a>Top 5 Songs of a specified Spotify feature within a Playlist</h3>
 <p>This function takes in a string of a playlist and a string of parameter and returns a dataframe with the top 5 songs.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/playlist_top_songs.html">playlist_top_songs</a></span>(<span class="st">"Christmas Jazz"</span>, valence, <span class="dt">asc =</span> T, <span class="dt">top =</span> <span class="dv">10</span>, <span class="dt">bg =</span> <span class="st">"lightgreen"</span>, <span class="dt">text =</span> <span class="st">"red"</span>)
-<span class="co">#&gt; Loading required package: formattable</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/playlist_top_songs.html">playlist_top_songs</a></span>(<span class="dt">data =</span> christmas_playlists, <span class="st">"Christmas Jazz"</span>, valence, <span class="dt">asc =</span> T, <span class="dt">top =</span> <span class="dv">10</span>, <span class="dt">bg =</span> <span class="st">"lightgreen"</span>, <span class="dt">text =</span> <span class="st">"red"</span>)</code></pre></div>
 <table class="table" style="width: auto !important; ">
 <thead><tr>
 <th style="text-align:left;">

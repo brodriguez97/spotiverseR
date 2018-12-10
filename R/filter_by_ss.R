@@ -9,6 +9,7 @@
 #'This function takes in a character string and subsets all the playlist names in the playlist_name
 #'column that contains that substring.
 #'
+#'@param data a dataframe of a user's playlists
 #'@param col playlist_name column set as default
 #'@param substring a character string
 #'
@@ -24,10 +25,9 @@
 #'@export
 #'@examples
 #'data(christmas_playlists)
-#'data<-christmas_playlists
-#'filter_by_ss(col=playlist_name, substring="jazz")
+#'filter_by_ss(data = christmas_playlists, col=playlist_name, substring="Jazz")
 
-filter_by_ss <- function(col = playlist_name, substring) {
+filter_by_ss <- function(data = data, col = playlist_name, substring) {
   require(rlang)
   require(dplyr)
   require(stringr)

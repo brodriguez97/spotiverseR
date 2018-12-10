@@ -12,6 +12,7 @@
 #'the function and that stores all the lyrics that are accumulated for the purposes of generating
 #'the word cloud.
 #'
+#'@param data a dataframe of a user's playlists
 #'@param playlist a character string
 #'@param stop_vector a boolean
 #'@param del_file a boolean
@@ -32,10 +33,9 @@
 #'@export
 #'@examples
 #'data(christmas_playlists)
-#'data<-christmas_playlists
-#'create_wordcloud("Christmas Jazz", c("yeah", "like"), del_file = T)
+#'create_wordcloud(data = christmas_playlists, "Christmas Classics", c("yeah", "like"), del_file = T)
 
-create_wordcloud <- function(playlist, stop_vector = F, del_file = T) {
+create_wordcloud <- function(data = data, playlist, stop_vector = F, del_file = T) {
   require(geniusR)
   require(dplyr)
   require(tm)

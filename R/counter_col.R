@@ -21,8 +21,8 @@
 #'@export
 #'@examples
 #'data(christmas_playlists)
-#'df <- counter_col(christmas_playlists)
-#'View(df)
+#'counter_col(christmas_playlists)
+
 counter_col <- function(df) {
   require(dplyr)
   df <- df %>%

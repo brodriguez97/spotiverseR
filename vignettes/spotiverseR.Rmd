@@ -25,8 +25,10 @@ This package, `spotiverseR`, aims to extend the `spotifyr` package with helper f
 ###Installation
 
 ```{r eval = TRUE, message = FALSE, warning=FALSE}
-devtools::install_github('charlie86/spotifyr')
-library('spotifyr')
+devtools::install_github("charlie86/spotifyr")
+devtools::install_github("kimpham23/spotiverseR")
+library("spotifyr")
+library("spotiverseR")
 ```
 
 
@@ -44,8 +46,8 @@ access_token <- get_spotify_access_token()
 ```
 
 ```{r eval = FALSE}
-Sys.setenv(SPOTIFY_CLIENT_ID = 'xxxxxxxxxxxxxxxxxxxxx')
-Sys.setenv(SPOTIFY_CLIENT_SECRET = 'xxxxxxxxxxxxxxxxxxxxx')
+Sys.setenv(SPOTIFY_CLIENT_ID = "xxxxxxxxxxxxxxxxxxxxx")
+Sys.setenv(SPOTIFY_CLIENT_SECRET = "xxxxxxxxxxxxxxxxxxxxx")
 access_token <- get_spotify_access_token()
 ```
 
@@ -54,19 +56,15 @@ access_token <- get_spotify_access_token()
 
 Your Spotify URI can be found on the Spotify app. On the top right corner, go to profile. Under your name, click on the circlular button and hit "Copy Spotify URI" in the drop down list. It is recommended to save the URI in an R variable called 'uri' as demonstrated below.
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-uri <- 1272777153
-data <- get_user_audio_features(uri)
-```
 
 ```{r eval = FALSE}
-uri <- 1234567
+uri <- 123456789
 ```
 
 
 ### Import Your Spotify Playlists
 
-In order to retrieve the comprehensive dataset of your Spotify public playlists, we recommend making the following function call and saving it as an R variable called 'data'.
+In order to retrieve the comprehensive dataset of your Spotify public playlists, we recommend making the following function call and saving it as an R variable called 'data' if you want to call functions on all of your playlists.
 
 ```{r eval = FALSE}
 data <- get_user_audio_features(uri)
@@ -83,7 +81,7 @@ The `christmas_playlists` is an example dataframe for testing. It has the same f
 ## Function Summaries
 ### All Spotify features
 
-This function does not take in any arguments, it just returns a character vector with the names of all parameters when you type in feat_names().
+This function does not take in any arguments, it just returns a character vector with the names of all parameters when you type in `feat_names()`.
 
 ```{r echo=FALSE, warning=FALSE}
 feat_names <- function() {
@@ -93,23 +91,23 @@ feat_names <- function() {
 ```
 
 ```{r eval=TRUE, echo=TRUE}
-#feat_names()
+feat_names()
 ```
 
 ### Definitions of all Spotify features
 
 This function does not take in any arguments. It is called on its own and returns
-a description in the console with the contents of the definitions.Rda file.
+a description in the console with the contents of the `definitions.rda` file.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 feat_attributes <- function() {
-  #load("definitions.rda")
+  data("definitions")
   return(definitions)
 }
 ```
 
 ```{r eval=TRUE, echo=TRUE}
-#feat_attributes()
+feat_attributes()
 ```
 
 ### Definitions of specific Spotify features
@@ -119,6 +117,7 @@ This function contains the descriptions of all parameters as they are written in
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 define_feat <- function(feat) {
   require(dplyr)
+  require(rlang)
   feat <- enquo(feat)
   dfx <- feat_attributes()
   dfx <- filter(dfx, KEY == quo_name(feat))
@@ -127,16 +126,16 @@ define_feat <- function(feat) {
 ```
 
 ```{r eval=TRUE, echo=TRUE}
-#define_feat(valence)
+define_feat(valence)
 ```
 
 
 ### Filtering playlist names with substrings
 
-This function takes in a character string and subsets all the playlist names in the playlist_name column that contains that substring.
+This function takes in a character string and subsets all the playlist names in the playlist_name column that contains that substring.Note that substrings are case sensative.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-filter_by_ss <- function(col = playlist_name, substring) {
+filter_by_ss <- function(data = data, col = playlist_name, substring) {
   require(rlang)
   require(dplyr)
   require(stringr)
@@ -147,23 +146,25 @@ filter_by_ss <- function(col = playlist_name, substring) {
 ```
 
 ```{r eval=TRUE, echo=TRUE}
-filter_by_ss(col=playlist_name, substring="jazz")
+data("christmas_playlists")
+filter_by_ss(data = christmas_playlists, col = playlist_name, substring = "Jazz")
 ```
 
 
 ### Create a histogram comparing user's playlists.
-The function create_mean_hist(data, ...) allows the user to create a histogram comparing a mean variable
+This function allows the user to create a histogram comparing a given average variable
 across different playlists. Here we see that the playlist 'Singled Out' has the highest average of energy out of all listed playlists, with 'Today's Top Hits' coming in close second. As exepected, the playlist 'Quiet Evening' has the smallest average of energy.
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
 create_mean_hist <- function(data = data, param, color = "pink", border = "darkred") {
   require(ggplot2)
   require(dplyr)
+  require(rlang)
   param <- enquo(param)
   plotdata <- data %>%
     group_by(playlist_name) %>%
     summarize(mean_param = mean(!!param))
-  
+
   # plot mean
   ggplot(
     plotdata,
@@ -186,17 +187,18 @@ create_mean_hist <- function(data = data, param, color = "pink", border = "darkr
 
 
 ```{r eval=TRUE, echo=TRUE}
-create_mean_hist(data, energy, color = "red", border = "darkgreen")
+create_mean_hist(data = christmas_playlists, energy, color = "red", border = "darkgreen")
 ```
 
 ### Create a joyplot comparing user's playlists
-The function create_joyplot(data,...) allows the user to create a joyplot (or ridgeline plot) comparing the distributions of a numeric variable across different playlists. 
+This function allows the user to create a joyplot (or ridgeline plot) comparing the distributions of a numeric variable across different playlists. 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
 create_joyplot <- function(data = data, param, color = c("blue", "green")) {
   require(ggplot2)
   require(ggridges)
+  require(rlang)
   param <- enquo(param)
   ggplot(
     data,
@@ -219,18 +221,19 @@ create_joyplot <- function(data = data, param, color = c("blue", "green")) {
 
 
 ```{r eval=TRUE, echo=TRUE}
-create_joyplot(data, valence, c("red","green"))
+create_joyplot(data = christmas_playlists, valence, c("red", "green"))
 ```
 
 ### Create a table or dataframe comparing a user's playlists.
-The function create_mean_df(data,...) allows the user to create either a dataframe or table comparing one mean variable across different playlists.
+This function allows the user to create either a dataframe or table comparing one mean variable across different playlists.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
-create_mean_df <- function(data = data, param, asc = T, kable = F, bg ="green", text = "red") {
+create_mean_df <- function(data = data, param, asc = T, kable = F, bg = "green", text = "red") {
   require(knitr)
   require(dplyr)
   require(kableExtra)
+  require(rlang)
   param <- enquo(param)
   dataset <- group_by(data, playlist_name)
   df <- aggregate(dataset[, quo_name(param)], list(dataset$playlist_name), mean)
@@ -244,8 +247,9 @@ create_mean_df <- function(data = data, param, asc = T, kable = F, bg ="green", 
   if (!kable) {
     return(df)
   } else {
-    df <- df %>% kable() %>% 
-      kable_styling(full_width = F, position = "left") %>% 
+    df <- df %>%
+      kable() %>%
+      kable_styling(full_width = F, position = "left") %>%
       row_spec(row = 1:nrow(df), background = bg, color = text)
     return(df)
   }
@@ -254,11 +258,11 @@ create_mean_df <- function(data = data, param, asc = T, kable = F, bg ="green", 
 
 
 ```{r eval=TRUE, echo=TRUE}
-create_mean_df(data, valence, asc = F, kable=T, bg = "lightgreen", text = "red")
+create_mean_df(data = christmas_playlists, valence, asc = F, kable = T, bg = "lightgreen", text = "red")
 ```
 
 ### Create a linear regression model comparing two variables.
-The function create_lr(data,...) allows the user to create a linear regression model (or models) comparing two numeric variables. If the user selects multi = T, the output will show a different linear regression model per playlist. Otherwise, all playlists are grouped together, and the output will result in a single linear regression model.
+This function allows the user to create a linear regression model (or models) comparing two numeric variables. If the user selects multi = T, the output will show a different linear regression model per playlist. Otherwise, all playlists are grouped together, and the output will result in a single linear regression model.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -277,7 +281,7 @@ create_lr <- function(data = data, param, param2, line = "white",
     } else {
       t <- theme_light()
     }
-    
+
     ggplot(
       data = data,
       mapping = aes(
@@ -327,14 +331,12 @@ create_lr_one <- function(data, param, param2, line = "white",
     t
   return(g)
 }
-
-
 ```
 
 
 ```{r eval=TRUE, echo=TRUE}
 create_lr(
-  data = data,
+  data = christmas_playlists,
   param = tempo,
   param2 = valence,
   points = "darkgreen",
@@ -350,7 +352,7 @@ create_lr(
 This function takes in a string of a playlist, a stop_vector that can remove certain common words like "yeah" and "like" (as well as any other words the user find as irrelevent), and del_file which is a boolean value that asserts whether the user wants to delete the output text file that is generated within the function and that stores all the lyrics that are accumulated for the purposes of generating the word cloud. This function would be especially useful for themed playlists.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-create_wordcloud <- function(playlist, stop_vector = F, del_file = T) {
+create_wordcloud <- function(data = data, playlist, stop_vector = F, del_file = T) {
   require(geniusR)
   require(dplyr)
   require(tm)
@@ -366,7 +368,7 @@ create_wordcloud <- function(playlist, stop_vector = F, del_file = T) {
     row <- playlist[i, ]
     song <- row$track_name
     artist <- row$artist_name
-    
+
     tryCatch(
       geniusr_song <- genius_lyrics(artist = artist, song = song)
       ,
@@ -381,12 +383,12 @@ create_wordcloud <- function(playlist, stop_vector = F, del_file = T) {
       }
     )
     if (geniusr_song == "err") next
-    
+
     write(geniusr_song$lyric, file = file_name, append = TRUE)
   }
   script <- "http://www.sthda.com/upload/rquery_wordcloud.r"
   source(script)
-  
+
   if (class(stop_vector) == "character") {
     stop <- stop_vector
     txt <- readLines(file_name)
@@ -396,12 +398,12 @@ create_wordcloud <- function(playlist, stop_vector = F, del_file = T) {
     corpus <- content(corpus)
     writeLines(corpus, con = file_name)
   }
-  
+
   res <- rquery.wordcloud(file_name,
-                          type = "file",
-                          lang = "english"
+    type = "file",
+    lang = "english"
   )
-  
+
   if (del_file) {
     file.remove(file_name)
   }
@@ -410,7 +412,7 @@ create_wordcloud <- function(playlist, stop_vector = F, del_file = T) {
 ```
 
 ```{r eval=TRUE, echo=TRUE}
-#create_wordcloud("Discover Weekly", c("yeah", "like"), del_file = T)
+# create_wordcloud(data = christmas_playlists, "Christmas Hits", c("yeah", "like"), del_file = T)
 ```
 
 
@@ -419,11 +421,11 @@ create_wordcloud <- function(playlist, stop_vector = F, del_file = T) {
 This function takes in a string of a playlist and a string of parameter and returns a dataframe with the top 5 songs.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-playlist_top_songs <- function(playlist, param, top = 5, asc = T, kable = T, bg = "azure", text = "palevioletred") {
+playlist_top_songs <- function(data = data, playlist, param, top = 5, asc = T, kable = T, bg = "azure", text = "palevioletred") {
   require(dplyr)
   require(knitr)
-  require(formattable)
   require(kableExtra)
+  require(rlang)
   param <- enquo(param)
   df <- filter(data, playlist_name == playlist)
   if (asc) {
@@ -433,9 +435,10 @@ playlist_top_songs <- function(playlist, param, top = 5, asc = T, kable = T, bg 
   }
   df <- select(df, track_name, !!param) %>%
     head(top)
-  if (kable){
-    df <- df %>% kable() %>% 
-      kable_styling(full_width = F, position = "left") %>% 
+  if (kable) {
+    df <- df %>%
+      kable() %>%
+      kable_styling(full_width = F, position = "left") %>%
       row_spec(row = 1:nrow(df), background = bg, color = text)
     return(df)
   } else {
@@ -445,7 +448,8 @@ playlist_top_songs <- function(playlist, param, top = 5, asc = T, kable = T, bg 
 ```
 
 ```{r eval=TRUE, echo=TRUE}
-playlist_top_songs("Christmas Jazz", valence, asc = T, top = 10, bg = "lightgreen", text = "red")
+playlist_top_songs(data = christmas_playlists, "Christmas Jazz", valence, asc = T, top = 10, bg = "lightgreen", text = "red")
 ```
+
 
 

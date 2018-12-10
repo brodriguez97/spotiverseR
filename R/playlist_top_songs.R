@@ -9,6 +9,7 @@
 #'This function takes in a string of a playlist and a string of parameter and returns a dataframe
 #'with the top 5 songs
 #'
+#'@param data a dataframe of a user's playlists
 #'@param playlist a character string
 #'@param param a numeric variable in data
 #'@param top an integer
@@ -30,11 +31,9 @@
 #'@export
 #'@examples
 #'data(christmas_playlists)
-#'data<-christmas_playlists
-#'playlist_top_songs("Christmas Jazz", valence, asc = T, top = 10, bg = "lightgreen", text = "red")
+#'playlist_top_songs(data = christmas_playlists, "Christmas Jazz", valence, asc = T, kable = F, top = 10)
 
-# get top songs for a given variable and playlist
-playlist_top_songs <- function(playlist, param, top = 5, asc = T, kable = T, bg = "azure", text = "palevioletred") {
+playlist_top_songs <- function(data = data, playlist, param, top = 5, asc = T, kable = T, bg = "azure", text = "palevioletred") {
   require(dplyr)
   require(knitr)
   require(kableExtra)

@@ -35,7 +35,7 @@
 #'points = "darkgreen",
 #'line = "red",
 #'theme = "light",
-#'multi = F
+#'multi = T
 #')
 create_lr <- function(data = data, param, param2, line = "white",
                       points = "green", theme = "dark",

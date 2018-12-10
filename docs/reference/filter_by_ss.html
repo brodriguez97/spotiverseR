@@ -108,11 +108,15 @@ dataframe.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>filter_by_ss</span>(<span class='kw'>col</span> <span class='kw'>=</span> <span class='no'>playlist_name</span>, <span class='no'>substring</span>)</pre>
+    <pre class="usage"><span class='fu'>filter_by_ss</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>data</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='no'>playlist_name</span>, <span class='no'>substring</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>data</th>
+      <td><p>a dataframe of a user's playlists</p></td>
+    </tr>
     <tr>
       <th>col</th>
       <td><p>playlist_name column set as default</p></td>
@@ -135,8 +139,25 @@ column that contains that substring.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='no'>christmas_playlists</span>)
-<span class='no'>data</span><span class='kw'>&lt;-</span><span class='no'>christmas_playlists</span>
-<span class='fu'>filter_by_ss</span>(<span class='kw'>col</span><span class='kw'>=</span><span class='no'>playlist_name</span>, <span class='kw'>substring</span><span class='kw'>=</span><span class='st'>"jazz"</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: stringr</span></div><div class='output co'>#&gt; <span class='error'>Error in UseMethod("filter_"): no applicable method for 'filter_' applied to an object of class "function"</span></div></pre>
+<span class='fu'>filter_by_ss</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>christmas_playlists</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='no'>playlist_name</span>, <span class='kw'>substring</span><span class='kw'>=</span><span class='st'>"Jazz"</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: stringr</span></div><div class='output co'>#&gt; # A tibble: 40 x 26
+#&gt;    playlist_name playlist_uri playlist_tracks… playlist_num_tr… snapshot_id
+#&gt;    &lt;chr&gt;         &lt;chr&gt;        &lt;chr&gt;                       &lt;int&gt; &lt;chr&gt;      
+#&gt;  1 Christmas Ja… 37i9dQZF1DX… https://api.spo…               40 MTU0MTQ0Mz…
+#&gt;  2 Christmas Ja… 37i9dQZF1DX… https://api.spo…               40 MTU0MTQ0Mz…
+#&gt;  3 Christmas Ja… 37i9dQZF1DX… https://api.spo…               40 MTU0MTQ0Mz…
+#&gt;  4 Christmas Ja… 37i9dQZF1DX… https://api.spo…               40 MTU0MTQ0Mz…
+#&gt;  5 Christmas Ja… 37i9dQZF1DX… https://api.spo…               40 MTU0MTQ0Mz…
+#&gt;  6 Christmas Ja… 37i9dQZF1DX… https://api.spo…               40 MTU0MTQ0Mz…
+#&gt;  7 Christmas Ja… 37i9dQZF1DX… https://api.spo…               40 MTU0MTQ0Mz…
+#&gt;  8 Christmas Ja… 37i9dQZF1DX… https://api.spo…               40 MTU0MTQ0Mz…
+#&gt;  9 Christmas Ja… 37i9dQZF1DX… https://api.spo…               40 MTU0MTQ0Mz…
+#&gt; 10 Christmas Ja… 37i9dQZF1DX… https://api.spo…               40 MTU0MTQ0Mz…
+#&gt; # ... with 30 more rows, and 21 more variables: playlist_img &lt;chr&gt;,
+#&gt; #   track_name &lt;chr&gt;, track_uri &lt;chr&gt;, artist_name &lt;chr&gt;, album_name &lt;chr&gt;,
+#&gt; #   album_img &lt;chr&gt;, track_popularity &lt;int&gt;, danceability &lt;dbl&gt;, energy &lt;dbl&gt;,
+#&gt; #   key &lt;chr&gt;, loudness &lt;dbl&gt;, mode &lt;chr&gt;, speechiness &lt;dbl&gt;,
+#&gt; #   acousticness &lt;dbl&gt;, instrumentalness &lt;dbl&gt;, liveness &lt;dbl&gt;, valence &lt;dbl&gt;,
+#&gt; #   tempo &lt;dbl&gt;, duration_ms &lt;dbl&gt;, time_signature &lt;dbl&gt;, key_mode &lt;chr&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
