@@ -1,0 +1,13 @@
+Package: spotiverseR
+Type: Package
+Title: Spotify Playlist Analyses
+Version: 0.1.0
+Date: 2018-12-13
+Authors@R: person("Kim", "Pham", email = "spham@wesleyan.edu", role = c("aut","cre"))
+Description: This package analyzes users' playlists with data from the Spotify API.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
