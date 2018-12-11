@@ -27,29 +27,14 @@
 #feats <- c("duration_ms","key","mode","time_signature","acousticness","danceability","energy","instrumentalness","liveness","loudness","speechiness","valence","tempo")
 
 define_feat <- function(feat) {
-    require(dplyr)
-    require(rlang)
+  require(dplyr)
+  require(rlang)
   feat <- enquo(feat)
   dfx <- feat_attributes()
-
-    tryCatch(feat <- enquo(feat),
-             message = function(m) {
-               stop("invalid input")
-             },
-             warning = function(w) {
-               stop("invalid input")
-
-             },
-             error = function(e) {
-               stop("invalid input")
-             },
-             finally = {
-               stop("invalid input")
-             }
-             )
-
-    dfx <- feat_attributes()
-    dfx <- filter(dfx, KEY == quo_name(feat))
+  dfx <- filter(dfx, KEY == quo_name(feat))
+  if (length(dfx$`VALUE DESCRIPTION`) == 0) {
+    stop("invalid input, try feat_names()")
+  } else {
     return(dfx$`VALUE DESCRIPTION`)
-
+  }
 }

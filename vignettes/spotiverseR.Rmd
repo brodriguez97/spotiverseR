@@ -115,23 +115,17 @@ feat_attributes()
 This function contains the descriptions of all parameters as they are written in the Spotify API within a dataframe. The user can see the description of a parameter when they input the parameter name.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
+
 define_feat <- function(feat) {
-  if (is.numeric(feat)) {
-    stop("integer is an invalid input")
-  }
-  else {
-    require(dplyr)
-    require(rlang)
-    feat <- enquo(feat)
-    dfx <- feat_attributes()
-    if (quo_name(feat) %in% dfx$KEY == F){
-     stop("invalid variable"){
-       
-     }else{
-    dfx <- filter(dfx, KEY == quo_name(feat))
+  require(dplyr)
+  require(rlang)
+  feat <- enquo(feat)
+  dfx <- feat_attributes()
+  dfx <- filter(dfx, KEY == quo_name(feat))
+  if (length(dfx$`VALUE DESCRIPTION`) == 0) {
+    stop("invalid input, try feat_names()")
+  } else {
     return(dfx$`VALUE DESCRIPTION`)
-     }
-    }
   }
 }
 ```
@@ -151,7 +145,9 @@ filter_by_ss <- function(data = data, col = playlist_name, substring) {
   require(dplyr)
   require(stringr)
   col <- enquo(col)
+  (if (quo_name(col) %in% names(data) == F) stop("column cannot be identified - try a valid column name"))
   new_data <- filter(data, str_detect(!!col, substring))
+  if (nrow(new_data) == 0) stop("no rows identified - substring is case sensative")
   return(new_data)
 }
 ```
@@ -211,6 +207,8 @@ create_joyplot <- function(data = data, param, color = c("blue", "green")) {
   require(ggridges)
   require(rlang)
   param <- enquo(param)
+  if (quo_name(param) %in% feat_names() == F) stop("invalid parameter defined")
+  #if (!is.numeric(data$param)) stop("parameter must be numeric")
   ggplot(
     data,
     aes(
@@ -227,7 +225,8 @@ create_joyplot <- function(data = data, param, color = c("blue", "green")) {
       legend.position = "none",
       axis.title.y = element_blank()
     )
-}
+  }
+
 ```
 
 
@@ -284,6 +283,10 @@ create_lr <- function(data = data, param, param2, line = "white",
   require(ggplot2)
   param <- enquo(param)
   param2 <- enquo(param2)
+  if (quo_name(param) %in% feat_names() == F) stop("invalid param defined")
+  if (quo_name(param2) %in% feat_names() == F) stop("invalid param2 defined")
+  if (theme != "light" & theme != "dark") stop("theme must be light or dark")
+
   if (multi == F) {
     create_lr_one(data = data, param = param, param2 = param2, line = line, points = points, theme = theme)
   } else {
@@ -314,6 +317,7 @@ create_lr <- function(data = data, param, param2, line = "white",
       t
   }
 }
+
 
 create_lr_one <- function(data, param, param2, line = "white",
                           points = "green", theme = "dark") {
@@ -371,6 +375,7 @@ create_wordcloud <- function(data = data, playlist, stop_vector = F, del_file = 
   require(RColorBrewer)
   require(RCurl)
   require(XML)
+  if (playlist %in% data$playlist_name == F) stop("playlist doesn't exist")
   playlist_name <- gsub(" ", "", playlist)
   file_name <- paste(playlist_name, "_lyrics.txt", sep = "")
   file.create(file_name, showWarnings = TRUE)
@@ -394,7 +399,14 @@ create_wordcloud <- function(data = data, playlist, stop_vector = F, del_file = 
       }
     )
 
-    if (geniusr_song == "err") next
+  if (!exists("geniusr_song")) {
+    next
+  }
+
+  if (geniusr_song == "err") {
+      next
+  }
+
 
     write(geniusr_song$lyric, file = file_name, append = TRUE)
   }
@@ -424,7 +436,7 @@ create_wordcloud <- function(data = data, playlist, stop_vector = F, del_file = 
 ```
 
 ```{r eval=TRUE, echo=TRUE}
-#create_wordcloud(data = christmas_playlists, "Christmas Classics", c("yeah", "like"), del_file = T)
+create_wordcloud(data = christmas_playlists, "Christmas Jazz", c("yeah", "like"), del_file = T)
 ```
 
 

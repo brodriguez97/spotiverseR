@@ -32,6 +32,8 @@ filter_by_ss <- function(data = data, col = playlist_name, substring) {
   require(dplyr)
   require(stringr)
   col <- enquo(col)
+  (if (quo_name(col) %in% names(data) == F) stop("column cannot be identified - try a valid column name"))
   new_data <- filter(data, str_detect(!!col, substring))
+  if (nrow(new_data) == 0) stop("no rows identified - substring is case sensative")
   return(new_data)
 }

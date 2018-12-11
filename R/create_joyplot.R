@@ -32,8 +32,9 @@ create_joyplot <- function(data = data, param, color = c("blue", "green")) {
   require(ggridges)
   require(rlang)
   param <- enquo(param)
+  #if (is.numeric((data$param)) == F) stop("parameter must be numeric")
   if (quo_name(param) %in% feat_names() == F) stop("invalid parameter defined")
-  #if (!is.numeric(data$param)) stop("parameter must be numeric")
+
   ggplot(
     data,
     aes(

@@ -43,6 +43,7 @@ create_wordcloud <- function(data = data, playlist, stop_vector = F, del_file = 
   require(RColorBrewer)
   require(RCurl)
   require(XML)
+  if (playlist %in% data$playlist_name == F) stop("playlist doesn't exist")
   playlist_name <- gsub(" ", "", playlist)
   file_name <- paste(playlist_name, "_lyrics.txt", sep = "")
   file.create(file_name, showWarnings = TRUE)
@@ -51,6 +52,7 @@ create_wordcloud <- function(data = data, playlist, stop_vector = F, del_file = 
     row <- playlist[i, ]
     song <- row$track_name
     artist <- row$artist_name
+
 
     tryCatch(
       geniusr_song <- genius_lyrics(artist = artist, song = song)
@@ -66,7 +68,14 @@ create_wordcloud <- function(data = data, playlist, stop_vector = F, del_file = 
       }
     )
 
-    if (geniusr_song == "err") next
+  if (!exists("geniusr_song")) {
+    next
+  }
+
+  if (geniusr_song == "err") {
+      next
+  }
+
 
     write(geniusr_song$lyric, file = file_name, append = TRUE)
   }

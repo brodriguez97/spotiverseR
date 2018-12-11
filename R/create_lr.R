@@ -44,6 +44,10 @@ create_lr <- function(data = data, param, param2, line = "white",
   require(ggplot2)
   param <- enquo(param)
   param2 <- enquo(param2)
+  if (quo_name(param) %in% feat_names() == F) stop("invalid param defined")
+  if (quo_name(param2) %in% feat_names() == F) stop("invalid param2 defined")
+  if (theme != "light" & theme != "dark") stop("theme must be light or dark")
+
   if (multi == F) {
     create_lr_one(data = data, param = param, param2 = param2, line = line, points = points, theme = theme)
   } else {
