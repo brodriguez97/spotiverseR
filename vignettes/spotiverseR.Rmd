@@ -37,7 +37,7 @@ library("spotiverseR")
 
 The following authetication excerpt comes from the `spotifyr` package ([here](https://github.com/charlie86/spotifyr)):
 
-First, set up a Dev account with Spotify to access their Web API ([here](https://developer.spotify.com/dashboard/)). This will give you your Client ID and Client Secret. Once you have those, you can pull your access token into R with get_spotify_access_token().
+First, set up a Dev account with Spotify to access their Web API ([here](https://developer.spotify.com/dashboard/)). This will give you your Client ID and Client Secret. Once you have those, you can pull your access token into R with `get_spotify_access_token()`.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 Sys.setenv(SPOTIFY_CLIENT_ID = "5edbea8880314a4fa53863228faea20b")
@@ -137,7 +137,7 @@ define_feat(valence)
 
 ### Filtering playlist names with substrings
 
-This function takes in a character string and subsets all the playlist names in the playlist_name column that contains that substring.Note that substrings are case sensative.
+This function takes in a character string and subsets all the playlist names in the playlist_name column that contains that substring. Note that substrings are case sensative.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 filter_by_ss <- function(data = data, col = playlist_name, substring) {
@@ -160,7 +160,8 @@ filter_by_ss(data = christmas_playlists, col = playlist_name, substring = "Jazz"
 
 ### Create a histogram comparing user's playlists.
 This function allows the user to create a histogram comparing a given average variable
-across different playlists. Here we see that the playlist 'Singled Out' has the highest average of energy out of all listed playlists, with 'Today's Top Hits' coming in close second. As exepected, the playlist 'Quiet Evening' has the smallest average of energy.
+across different playlists. Here we see that the playlist 'Christmas Hits' has the highest average of energy out of all listed playlists.
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 
 create_mean_hist <- function(data = data, param, color = "pink", border = "darkred") {
@@ -275,7 +276,7 @@ create_mean_df(data = christmas_playlists, valence, asc = F, kable = T, bg = "li
 ```
 
 ### Create a linear regression model comparing two variables.
-This function allows the user to create a linear regression model (or models) comparing two numeric variables. If the user selects multi = T, the output will show a different linear regression model per playlist. Otherwise, all playlists are grouped together, and the output will result in a single linear regression model.
+This function allows the user to create a linear regression model (or models) comparing two numeric variables. If the user defines `multi = T`, the output will show a different linear regression model per playlist. Otherwise, all playlists are grouped together, and the output will result in a single linear regression model.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 

@@ -24,8 +24,6 @@
 #'@examples
 #'define_feat(valence)
 
-#feats <- c("duration_ms","key","mode","time_signature","acousticness","danceability","energy","instrumentalness","liveness","loudness","speechiness","valence","tempo")
-
 define_feat <- function(feat) {
   require(dplyr)
   require(rlang)

@@ -1,4 +1,4 @@
-# Introduction to spotiverseR
+# Welcome to spotiverseR
 
 This package analyzes users' playlists with data from the Spotify API.
 

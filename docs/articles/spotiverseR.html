@@ -63,7 +63,7 @@
       <h1>spotiverseR</h1>
                         <h4 class="author">Belen Rodriguez and Kim Pham</h4>
             
-            <h4 class="date">2018-12-10</h4>
+            <h4 class="date">2018-12-11</h4>
       
       
       <div class="hidden name"><code>spotiverseR.Rmd</code></div>
@@ -92,7 +92,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <h3 class="hasAnchor">
 <a href="#authentication" class="anchor"></a>Authentication</h3>
 <p>The following authetication excerpt comes from the <code>spotifyr</code> package (<a href="https://github.com/charlie86/spotifyr">here</a>):</p>
-<p>First, set up a Dev account with Spotify to access their Web API (<a href="https://developer.spotify.com/dashboard/">here</a>). This will give you your Client ID and Client Secret. Once you have those, you can pull your access token into R with get_spotify_access_token().</p>
+<p>First, set up a Dev account with Spotify to access their Web API (<a href="https://developer.spotify.com/dashboard/">here</a>). This will give you your Client ID and Client Secret. Once you have those, you can pull your access token into R with <code><a href="http://www.rdocumentation.org/packages/spotifyr/topics/get_spotify_access_token">get_spotify_access_token()</a></code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.setenv</span>(<span class="dt">SPOTIFY_CLIENT_ID =</span> <span class="st">"xxxxxxxxxxxxxxxxxxxxx"</span>)
 <span class="kw">Sys.setenv</span>(<span class="dt">SPOTIFY_CLIENT_SECRET =</span> <span class="st">"xxxxxxxxxxxxxxxxxxxxx"</span>)
 access_token &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/spotifyr/topics/get_spotify_access_token">get_spotify_access_token</a></span>()</code></pre></div>
@@ -184,7 +184,7 @@ access_token &lt;-<span class="st"> </span><span class="kw"><a href="http://www.
 <div id="filtering-playlist-names-with-substrings" class="section level3">
 <h3 class="hasAnchor">
 <a href="#filtering-playlist-names-with-substrings" class="anchor"></a>Filtering playlist names with substrings</h3>
-<p>This function takes in a character string and subsets all the playlist names in the playlist_name column that contains that substring.Note that substrings are case sensative.</p>
+<p>This function takes in a character string and subsets all the playlist names in the playlist_name column that contains that substring. Note that substrings are case sensative.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">"christmas_playlists"</span>)
 <span class="kw"><a href="../reference/filter_by_ss.html">filter_by_ss</a></span>(<span class="dt">data =</span> christmas_playlists, <span class="dt">col =</span> playlist_name, <span class="dt">substring =</span> <span class="st">"Jazz"</span>)
 <span class="co">#&gt; Loading required package: stringr</span>
@@ -212,7 +212,7 @@ access_token &lt;-<span class="st"> </span><span class="kw"><a href="http://www.
 <div id="create-a-histogram-comparing-users-playlists-" class="section level3">
 <h3 class="hasAnchor">
 <a href="#create-a-histogram-comparing-users-playlists-" class="anchor"></a>Create a histogram comparing user’s playlists.</h3>
-<p>This function allows the user to create a histogram comparing a given average variable across different playlists. Here we see that the playlist ‘Singled Out’ has the highest average of energy out of all listed playlists, with ‘Today’s Top Hits’ coming in close second. As exepected, the playlist ‘Quiet Evening’ has the smallest average of energy.</p>
+<p>This function allows the user to create a histogram comparing a given average variable across different playlists. Here we see that the playlist ‘Christmas Hits’ has the highest average of energy out of all listed playlists.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/create_mean_hist.html">create_mean_hist</a></span>(<span class="dt">data =</span> christmas_playlists, energy, <span class="dt">color =</span> <span class="st">"red"</span>, <span class="dt">border =</span> <span class="st">"darkgreen"</span>)
 <span class="co">#&gt; Loading required package: ggplot2</span></code></pre></div>
 <p><img src="spotiverseR_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
@@ -286,7 +286,7 @@ Spotify Singles: Christmas Collection
 <div id="create-a-linear-regression-model-comparing-two-variables-" class="section level3">
 <h3 class="hasAnchor">
 <a href="#create-a-linear-regression-model-comparing-two-variables-" class="anchor"></a>Create a linear regression model comparing two variables.</h3>
-<p>This function allows the user to create a linear regression model (or models) comparing two numeric variables. If the user selects multi = T, the output will show a different linear regression model per playlist. Otherwise, all playlists are grouped together, and the output will result in a single linear regression model.</p>
+<p>This function allows the user to create a linear regression model (or models) comparing two numeric variables. If the user defines <code>multi = T</code>, the output will show a different linear regression model per playlist. Otherwise, all playlists are grouped together, and the output will result in a single linear regression model.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/create_lr.html">create_lr</a></span>(
   <span class="dt">data =</span> christmas_playlists,
   <span class="dt">param =</span> tempo,

@@ -5,7 +5,7 @@
 #'\code{create_mean_hist} takes a dataframe, one argument, a color, and a border color.
 #'
 #'@details
-#'This function uses \code{ggplot2},\code{rlang}, and \code{dplye}.
+#'This function uses \code{ggplot2},\code{rlang}, and \code{dplyr}.
 #'
 #'
 #'@param data a dataframe of a user's playlists.

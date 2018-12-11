@@ -34,7 +34,7 @@
 #'@export
 #'@examples
 #'data(christmas_playlists)
-#'create_wordcloud(data = christmas_playlists, "Christmas Classics", c("yeah", "like"), del_file = T)
+#'create_wordcloud(data = christmas_playlists, "Christmas Classics", stop_vector = c("yeah", "like"), del_file = T)
 
 create_wordcloud <- function(data = data, playlist, stop_vector = NA, max_words = 30, del_file = T) {
   require(geniusR)
