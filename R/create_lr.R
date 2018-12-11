@@ -47,6 +47,8 @@ create_lr <- function(data = data, param, param2, line = "white",
   if (quo_name(param) %in% feat_names() == F) stop("invalid param defined")
   if (quo_name(param2) %in% feat_names() == F) stop("invalid param2 defined")
   if (theme != "light" & theme != "dark") stop("theme must be light or dark")
+  s<-select(christmas_playlists, !!param, !!param2)
+  suppressWarnings(if (sapply(s[[1]],is.numeric) == F | sapply(s[[2]],is.numeric) == F) stop("input variable must be numeric"))
 
   if (multi == F) {
     create_lr_one(data = data, param = param, param2 = param2, line = line, points = points, theme = theme)

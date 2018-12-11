@@ -4,15 +4,17 @@
 \alias{create_wordcloud}
 \title{Create a Wordcloud}
 \usage{
-create_wordcloud(data = data, playlist, stop_vector = F,
-  del_file = T)
+create_wordcloud(data = data, playlist, stop_vector = NA,
+  max_words = 30, del_file = T)
 }
 \arguments{
 \item{data}{a dataframe of a user's playlists}
 
 \item{playlist}{a character string}
 
-\item{stop_vector}{a boolean}
+\item{stop_vector}{a vector}
+
+\item{max_words}{an integer}
 
 \item{del_file}{a boolean}
 }

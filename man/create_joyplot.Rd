@@ -21,7 +21,7 @@ a joyplot containing playlists and the distributions of a numeric variable.
 to plot a joyplot containing playlists and the distributions of a numeric variable.
 }
 \details{
-This function uses \code{ggplot2},\code{rlang}, and \code{ggridges}.
+This function uses \code{ggplot2},\code{rlang},\code{dplyr}, and \code{ggridges}.
 }
 \examples{
 data(christmas_playlists)

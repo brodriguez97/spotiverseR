@@ -7,7 +7,7 @@
 #'
 #'
 #'@details
-#'This function uses \code{ggplot2},\code{rlang}, and \code{ggridges}.
+#'This function uses \code{ggplot2},\code{rlang},\code{dplyr}, and \code{ggridges}.
 #'
 #'
 #'@param data a dataframe of a user's playlists.
@@ -17,6 +17,7 @@
 #'@import ggplot2
 #'@import ggridges
 #'@import rlang
+#'@import dplyr
 #'@return a joyplot containing playlists and the distributions of a numeric variable.
 #'
 #'@author Belen Rodriguez <brodriguez@@wesleyan.edu>
@@ -31,9 +32,11 @@ create_joyplot <- function(data = data, param, color = c("blue", "green")) {
   require(ggplot2)
   require(ggridges)
   require(rlang)
+  require(dplyr)
   param <- enquo(param)
-  #if (is.numeric((data$param)) == F) stop("parameter must be numeric")
   if (quo_name(param) %in% feat_names() == F) stop("invalid parameter defined")
+  s<-select(christmas_playlists, !!param)
+  if (sapply(s,is.numeric) == F) stop("input variable must be numeric")
 
   ggplot(
     data,

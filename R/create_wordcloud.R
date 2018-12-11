@@ -14,8 +14,9 @@
 #'
 #'@param data a dataframe of a user's playlists
 #'@param playlist a character string
-#'@param stop_vector a boolean
+#'@param stop_vector a vector
 #'@param del_file a boolean
+#'@param max_words an integer
 #'
 #'@return a wordcloud generated from rquery
 #'
@@ -35,7 +36,7 @@
 #'data(christmas_playlists)
 #'create_wordcloud(data = christmas_playlists, "Christmas Classics", c("yeah", "like"), del_file = T)
 
-create_wordcloud <- function(data = data, playlist, stop_vector = F, del_file = T) {
+create_wordcloud <- function(data = data, playlist, stop_vector = NA, max_words = 30, del_file = T) {
   require(geniusR)
   require(dplyr)
   require(tm)
@@ -82,19 +83,12 @@ create_wordcloud <- function(data = data, playlist, stop_vector = F, del_file = 
   script <- "http://www.sthda.com/upload/rquery_wordcloud.r"
   source(script)
 
-  if (class(stop_vector) == "character") {
-    stop <- stop_vector
-    txt <- readLines(file_name)
-    names(txt) <- 1:length(text)
-    corpus <- Corpus(VectorSource(txt))
-    corpus <- tm_map(corpus, removeWords, stop)
-    corpus <- content(corpus)
-    writeLines(corpus, con = file_name)
-  }
 
   res <- rquery.wordcloud(file_name,
                           type = "file",
-                          lang = "english"
+                          lang = "english",
+                          excludeWords = stop_vector,
+                          max.words = max_words
   )
 
   if (del_file) {
@@ -102,3 +96,4 @@ create_wordcloud <- function(data = data, playlist, stop_vector = F, del_file = 
   }
   return(res)
 }
+

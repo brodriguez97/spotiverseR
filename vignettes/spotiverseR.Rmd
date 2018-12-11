@@ -206,9 +206,12 @@ create_joyplot <- function(data = data, param, color = c("blue", "green")) {
   require(ggplot2)
   require(ggridges)
   require(rlang)
+  require(dplyr)
   param <- enquo(param)
   if (quo_name(param) %in% feat_names() == F) stop("invalid parameter defined")
-  #if (!is.numeric(data$param)) stop("parameter must be numeric")
+  s<-select(christmas_playlists, !!param)
+  if (sapply(s,is.numeric) == F) stop("input variable must be numeric")
+
   ggplot(
     data,
     aes(
@@ -286,6 +289,8 @@ create_lr <- function(data = data, param, param2, line = "white",
   if (quo_name(param) %in% feat_names() == F) stop("invalid param defined")
   if (quo_name(param2) %in% feat_names() == F) stop("invalid param2 defined")
   if (theme != "light" & theme != "dark") stop("theme must be light or dark")
+  s<-select(christmas_playlists, !!param, !!param2)
+  suppressWarnings(if (sapply(s[[1]],is.numeric) == F | sapply(s[[2]],is.numeric) == F) stop("input variable must be numeric"))
 
   if (multi == F) {
     create_lr_one(data = data, param = param, param2 = param2, line = line, points = points, theme = theme)
@@ -367,7 +372,7 @@ create_lr(
 This function takes in a string of a playlist, a stop_vector that can remove certain common words like "yeah" and "like" (as well as any other words the user find as irrelevent), and del_file which is a boolean value that asserts whether the user wants to delete the output text file that is generated within the function and that stores all the lyrics that are accumulated for the purposes of generating the word cloud. This function would be especially useful for themed playlists.
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-create_wordcloud <- function(data = data, playlist, stop_vector = F, del_file = T) {
+create_wordcloud <- function(data = data, playlist, stop_vector = NA, max_words = 30, del_file = T) {
   require(geniusR)
   require(dplyr)
   require(tm)
@@ -384,6 +389,7 @@ create_wordcloud <- function(data = data, playlist, stop_vector = F, del_file = 
     row <- playlist[i, ]
     song <- row$track_name
     artist <- row$artist_name
+
 
     tryCatch(
       geniusr_song <- genius_lyrics(artist = artist, song = song)
@@ -413,19 +419,12 @@ create_wordcloud <- function(data = data, playlist, stop_vector = F, del_file = 
   script <- "http://www.sthda.com/upload/rquery_wordcloud.r"
   source(script)
 
-  if (class(stop_vector) == "character") {
-    stop <- stop_vector
-    txt <- readLines(file_name)
-    names(txt) <- 1:length(text)
-    corpus <- Corpus(VectorSource(txt))
-    corpus <- tm_map(corpus, removeWords, stop)
-    corpus <- content(corpus)
-    writeLines(corpus, con = file_name)
-  }
 
   res <- rquery.wordcloud(file_name,
                           type = "file",
-                          lang = "english"
+                          lang = "english",
+                          excludeWords = stop_vector,
+                          max.words = max_words
   )
 
   if (del_file) {
