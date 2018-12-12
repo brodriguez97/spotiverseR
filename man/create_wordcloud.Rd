@@ -34,7 +34,7 @@ the word cloud.
 }
 \examples{
 data(christmas_playlists)
-create_wordcloud(data = christmas_playlists, "Christmas Classics", stop_vector = c("yeah", "like"), del_file = T)
+suppressWarnings(create_wordcloud(data = christmas_playlists, "Christmas Classics", stop_vector = c("yeah", "like"), del_file = T))
 }
 \author{
 Belen Rodriguez <brodriguez@wesleyan.edu>
