@@ -84,7 +84,7 @@ create_wordcloud <- function(data = data, playlist, stop_vector = NA, max_words 
   source(script)
 
 
-  res <- rquery.wordcloud(file_name,
+  rquery.wordcloud(file_name,
                           type = "file",
                           lang = "english",
                           excludeWords = stop_vector,
@@ -94,6 +94,6 @@ create_wordcloud <- function(data = data, playlist, stop_vector = NA, max_words 
   if (del_file) {
     file.remove(file_name)
   }
-  return(res)
+  #return(res)
 }
 

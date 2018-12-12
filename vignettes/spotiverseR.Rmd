@@ -26,8 +26,10 @@ This package, `spotiverseR`, aims to extend the `spotifyr` package with helper f
 
 ```{r eval = TRUE, message = FALSE, warning=FALSE}
 devtools::install_github("charlie86/spotifyr")
+devtools::install_github("josiahparry/geniusR")
 devtools::install_github("kimpham23/spotiverseR")
 library("spotifyr")
+library("geniusR")
 library("spotiverseR")
 ```
 
@@ -421,7 +423,7 @@ create_wordcloud <- function(data = data, playlist, stop_vector = NA, max_words 
   source(script)
 
 
-  res <- rquery.wordcloud(file_name,
+  rquery.wordcloud(file_name,
                           type = "file",
                           lang = "english",
                           excludeWords = stop_vector,
@@ -431,12 +433,11 @@ create_wordcloud <- function(data = data, playlist, stop_vector = NA, max_words 
   if (del_file) {
     file.remove(file_name)
   }
-  return(res)
 }
 ```
 
 ```{r eval=TRUE, echo=TRUE}
-create_wordcloud(data = christmas_playlists, "Christmas Jazz", c("yeah", "like"), del_file = T)
+suppressWarnings(create_wordcloud(data = christmas_playlists, "Christmas Jazz", c("yeah", "like"), del_file = T))
 ```
 
 
