@@ -15,7 +15,6 @@
 #'@param color a character vector of colors
 #'
 #'@import ggplot2
-#'@import ggridges
 #'@import rlang
 #'@import dplyr
 #'@return a joyplot containing playlists and the distributions of a numeric variable.
@@ -30,7 +29,6 @@
 #'
 create_joyplot <- function(data = data, param, color = c("blue", "green")) {
   require(ggplot2)
-  require(ggridges)
   require(rlang)
   require(dplyr)
   param <- enquo(param)
