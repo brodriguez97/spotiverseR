@@ -10,13 +10,13 @@
 #'with the top 5 songs
 #'
 #'@param data a dataframe of a user's playlists
-#'@param playlist a character string
-#'@param param a numeric variable in data
-#'@param top an integer
-#'@param asc a boolean
-#'@param kable a boolean
-#'@param bg a character string
-#'@param text a character string
+#'@param playlist a character string of playlist to be analyzed
+#'@param param a numeric variable in data (Spotify parameter)
+#'@param top an integer indicating the number of songs for the outpit
+#'@param asc a boolean value indicating whether the top songs should go or not go in ascending order within the output (according to their value)
+#'@param kable a boolean value indicating whether the dataframe output should be styled according to "bg" and "text" 
+#'@param bg a character string indicating the color for the background
+#'@param text a character string indicating the color for the text
 #'
 #'@return a dataframe
 #'
