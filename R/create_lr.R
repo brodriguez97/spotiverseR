@@ -11,12 +11,12 @@
 #'
 #'
 #'@param data a dataframe of a user's playlists.
-#'@param param a numeric variable in data
-#'@param param another numeric variable in data
+#'@param param Spotify parameter plotted on the x axis
+#'@param param Spotify parameter plotted on the y axis
 #'@param line a string with a color name
 #'@param points a string with a color name
 #'@param theme a string that has valid values "light" or "dark"
-#'@param multi a boolean
+#'@param multi boolean value indicating whether 1 graph (F) or, alternatively, multiple graphs (T) for all playlists should be plotted
 #'
 #'@import rlang
 #'@import ggplot2
