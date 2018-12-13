@@ -13,10 +13,10 @@
 #'the word cloud.
 #'
 #'@param data a dataframe of a user's playlists
-#'@param playlist a character string
-#'@param stop_vector a vector
-#'@param del_file a boolean
-#'@param max_words an integer
+#'@param playlist a character string indicating playlist to be analyzed
+#'@param stop_vector a vector that does not include common vector
+#'@param del_file a boolean value that indicates whether or not you want the exported .txt file to be deleted once the function is ran
+#'@param max_words an integer indicating the maximum number of words to be included in the wordcloud
 #'
 #'@return a wordcloud generated from rquery
 #'
