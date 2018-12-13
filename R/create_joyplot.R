@@ -11,7 +11,7 @@
 #'
 #'
 #'@param data a dataframe of a user's playlists.
-#'@param param a numeric variable in data
+#'@param param Spotify parameter
 #'@param color a character vector of colors
 #'
 #'@import ggplot2
